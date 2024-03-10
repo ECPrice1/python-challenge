@@ -36,11 +36,11 @@ with open(csvpath) as csvfile:
 
    
     if candidate_list[0]['votes'] > candidate_list[1]['votes'] and candidate_list[2]['votes']:
-        winner = 'Charles Casper Stockham'
+        winner = candidate_list[0]['name']
     if candidate_list[1]['votes'] > candidate_list[0]['votes'] and candidate_list[2]['votes']:
-        winner = 'Diana DeGette'
+        winner = candidate_list[1]['name']
     if candidate_list[2]['votes'] > candidate_list[0]['votes'] and candidate_list[1]['votes']:
-        winner = 'Raymon Anthony Doane'
+        winner = candidate_list[2]['name']
 
 
     def output(candidate):
