@@ -74,3 +74,23 @@ print(" ")
 print(f"Greatest decrease in profits: {gd_mo} (${greatest_decrease})")
 
 #Still need to export .txt file
+#https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+#used this for help in exporting .txt
+bankfile = open("PyBank.txt", 'w')
+
+line1 = ("Financial Analysis")
+line2 = "\n"
+line3 = ("-------------------------------------------------")
+line4 = "\n"
+line5 = (f"Total months: {mo_count}")
+line6 = "\n"
+line7 = (f"Total: ${total_pl}")
+line8 = "\n"
+line9 = (f"Average change: ${format(net_change_tot/(mo_count-1), ".2f")}")
+line10 = "\n"
+line11 = (f"Greatest increase in profits: {gi_mo} (${greatest_increase})")
+line12 = "\n"
+line13 = (f"Greatest decrease in profits: {gd_mo} (${greatest_decrease})")
+
+
+bankfile.write(line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13) 
