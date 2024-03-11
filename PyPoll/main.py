@@ -1,30 +1,36 @@
+#Importing necessary modules
 import os
 import csv
 
+#Establishing path to csv file
 csvpath = os.path.join("..", "PyPoll", "Resources", "election_data.csv")
 
+#Opening csv file
 with open(csvpath) as csvfile:
 
+    #CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
+    #Skipping csv header row
     csv_header = next(csvreader)
 
+    #Establishing some initial variables 
     total_votes = 0
     winner = 0
 
+    #List of dictionaries with name and votes for each candidate.
     candidate_list = [
         {'name': 'Charles Casper Stockham', 'votes': 0},
         {'name': 'Diana DeGette', 'votes': 0},
         {'name': 'Raymon Anthony Doane', 'votes': 0}
     ]
 
+    #Read each row of data after the header  
     for row in csvreader:
+        #Counting "Total votes"
         total_votes += 1
-        #if row[2] not in candidate_list:
-            #candidate_list.append(row[2])
-            #print(candidate_list)
-            #this piece of code was initially used to read through the entire file to determine the number of candidates and their names
-         
+        
+        #Counting votes for candidates, storing results
         if row[2] == candidate_list[0]['name']:
             candidate_list[0]['votes'] += 1
 
@@ -35,6 +41,7 @@ with open(csvpath) as csvfile:
             candidate_list[2]['votes'] += 1
 
    
+    #Comparing results to determine winner
     if candidate_list[0]['votes'] > candidate_list[1]['votes'] and candidate_list[2]['votes']:
         winner = candidate_list[0]['name']
     if candidate_list[1]['votes'] > candidate_list[0]['votes'] and candidate_list[2]['votes']:
@@ -43,10 +50,12 @@ with open(csvpath) as csvfile:
         winner = candidate_list[2]['name']
 
 
+    #Calculating percentage of votes and creating output for candidate name, percentage of votes won and candidate total votes
     def output(candidate):
         output = f'{candidate['name']}: {format(((candidate['votes']/ total_votes)*100), ".2f")}%, ({candidate['votes']})'
         print(output)
 
+#Print results
 print("Election results")
 print("")
 print("-------------------------------------------------")
@@ -66,33 +75,38 @@ print(f'Winner: {winner}')
 print("")
 print("------------------------------------------------")
 
+#Exporting results to .txt
 #https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
-#used this for help in exporting .txt
+
 pollfile = open("PyPoll.txt", 'w')
 
 line1 = ("Election results")
 line2 = "\n"
 line3 = ("-------------------------------------------------")
 line4 = "\n"
-line5 = (f"Total votes: {total_votes}")
-line6 = "\n"
-line7 = ("-------------------------------------------------")
+line5 = "\n"
+line6 = (f"Total votes: {total_votes}")
+line7 = "\n"
 line8 = "\n"
-line9 = (f'{candidate_list[0]['name']}: {format(((candidate_list[0]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[0]['votes']})')
+line9 = ("-------------------------------------------------")
 line10 = "\n"
 line11 = "\n"
-line12 = (f'{candidate_list[1]['name']}: {format(((candidate_list[1]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[1]['votes']})')
+line12 = (f'{candidate_list[0]['name']}: {format(((candidate_list[0]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[0]['votes']})')
 line13 = "\n"
 line14 = "\n"
-line15 = (f'{candidate_list[2]['name']}: {format(((candidate_list[2]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[2]['votes']})')
+line15 = (f'{candidate_list[1]['name']}: {format(((candidate_list[1]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[1]['votes']})')
 line16 = "\n"
-line17 = ("-------------------------------------------------")
-line18 = "\n"
+line17 = "\n"
+line18 = (f'{candidate_list[2]['name']}: {format(((candidate_list[2]['votes']/ total_votes)*100), ".2f")}%, ({candidate_list[2]['votes']})')
 line19 = "\n"
-line20 = (f'Winner: {winner}')
-line21 = "\n"
+line20 = "\n"
+line21 = ("-------------------------------------------------")
 line22 = "\n"
-line23 = ("------------------------------------------------")
+line23 = "\n"
+line24 = (f'Winner: {winner}')
+line25 = "\n"
+line26 = "\n"
+line27 = ("------------------------------------------------")
 
 pollfile.write(line1+
                line2+
@@ -116,6 +130,10 @@ pollfile.write(line1+
                line20+
                line21+
                line22+
-               line23
+               line23+
+               line24+
+               line25+
+               line26+
+               line27
 ) 
 
