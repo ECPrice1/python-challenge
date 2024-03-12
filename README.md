@@ -5,15 +5,23 @@
 ## Table of contents
 
 *PyBank 
+    
     *Resources
+        
         *budget_data.csv
+    
     *main.py (Python file for PyBank)
+    
     *PyBank.txt (sample results for .txt file output
 
 *PyPoll 
+    
     *Resources
+        
         *election_data.csv
+    
     *main.py (Python file for PyPoll)
+    
     *PyPoll.txt (sample results for .txt file output   
  
 
